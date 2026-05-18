@@ -1,28 +1,22 @@
-const btn = document.getElementById("submit");
 const nom = document.getElementById("name");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
+const submit = document.getElementById("submit");
 
-console.log(btn);
-console.log(nom.value);
-console.log(email.value);
-console.log(password.value);
+console.log(nom);
+console.log(email);
+console.log(password);
+console.log(submit);
 
-btn.addEventListener("click", function(event) {
-
-    event.preventDefault();
+submit.addEventListener("click", function(event) {
+    event.preventDefault(); // toujours en premier
 
     if (nom.value === "" || email.value === "" || password.value === "") {
-        alert("Veuillez remplir tous les champs du formulaire.");
-        return;
-    } 
-
-    if (!email.value.includes("@")) {
-        alert("Veuillez entrer une adresse email valide.");
+        alert("Veuillez remplir tous les champs.");
         return;
     }
 
-    if(password.value.length < 6) {
+    if (password.value.length < 6) {
         alert("Le mot de passe doit contenir au moins 6 caractères.");
         return;
     }
@@ -33,12 +27,13 @@ btn.addEventListener("click", function(event) {
         password: password.value
     };
 
+    localStorage.setItem("user", JSON.stringify(user));
+
     console.log(user);
 
-    console.log("Button clicked!");
-    console.log("name: " + nom.value);
-    console.log("Email: " + email.value);
-    console.log("Password: " + password.value);
-
-    alert("bonne inscription");
+    alert(
+        "name: " + nom.value +
+        "\nemail: " + email.value +
+        "\npassword: " + password.value
+    );
 });
